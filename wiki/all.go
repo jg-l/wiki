@@ -3,11 +3,11 @@ package wiki
 import (
 	"fmt"
 	"github.com/jg-l/wiki/db"
-	"github.com/russross/blackfriday"
+	_ "github.com/russross/blackfriday"
 	"github.com/zenazn/goji/web"
-	"html/template"
+	_ "html/template"
 	"net/http"
-	"time"
+	_ "time"
 )
 
 // Show is the show endpoint of the Wiki
