@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.org/jg-l/wiki/db"
+	"github.com/jg-l/wiki/db"
 )
 
 type formData struct {
