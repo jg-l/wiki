@@ -1,7 +1,11 @@
 Wiki
 ====
 
-A tiny wiki using [Goji](http://goji.io/), [BoltDB](https://github.com/boltdb/bolt) and [Blackfriday](https://github.com/russross/blackfriday).
+A *fork* tiny wiki using [Goji](http://goji.io/), [BoltDB](https://github.com/boltdb/bolt) and [Blackfriday](https://github.com/russross/blackfriday).
+
+This fork adds Created and Modified timestamps to pages.
+
+This fork will use Gin as the web framework in the future
 
 ## Installation
 

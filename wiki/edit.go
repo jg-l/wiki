@@ -7,7 +7,7 @@ import (
 
 	"github.com/zenazn/goji/web"
 
-	"github.org/jg-l/wiki/db"
+	"github.com/jg-l/wiki/db"
 )
 
 // Edit is the edit endpoint of the Wiki
