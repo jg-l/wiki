@@ -53,6 +53,7 @@ func main() {
 
 	// Setup up the routes for the wiki
 	goji.Get("/", w.Show)
+	goji.Get("/wiki/all", w.All)
 	goji.Get("/:name", w.Show)
 	goji.Get("/:name/", w.RedirectToShow)
 	goji.Get("/:name/edit", w.Edit)
