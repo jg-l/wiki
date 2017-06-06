@@ -1,13 +1,12 @@
 package wiki
 
 import (
-	"html/template"
-	"net/http"
-
 	"github.com/russross/blackfriday"
 	"github.com/zenazn/goji/web"
-
-	"github.com/peterhellberg/wiki/db"
+	"html/template"
+	"net/http"
+	"time"
+	"wiki/db"
 )
 
 // Show is the show endpoint of the Wiki
@@ -19,11 +18,14 @@ func (w *Wiki) Show(c web.C, rw http.ResponseWriter, r *http.Request) {
 
 		if err != nil {
 			p.Text = []byte(emptyPageString)
+			//p.Created = []byte(y)
 		}
 
 		vars := map[string]interface{}{
-			"Path": "/" + string(p.Name) + "/edit",
-			"Text": BytesAsHTML(ParsedMarkdown(p.Text)),
+			"Path":     "/" + string(p.Name) + "/edit",
+			"Text":     BytesAsHTML(ParsedMarkdown(p.Text)),
+			"Created":  BytesAsTime(p.Created),
+			"Modified": BytesAsTime(p.Modified),
 		}
 
 		t := template.Must(template.New("show").Parse(showTpl))
@@ -36,6 +38,12 @@ func (w *Wiki) Show(c web.C, rw http.ResponseWriter, r *http.Request) {
 // RedirectToShow redirects to the show endpoint using a HTTP 302
 func (w *Wiki) RedirectToShow(c web.C, rw http.ResponseWriter, r *http.Request) {
 	http.Redirect(rw, r, "/"+c.URLParams["name"], 302)
+}
+
+func BytesAsTime(b []byte) *time.Time {
+	v := new(time.Time)
+	v.UnmarshalBinary(b)
+	return v
 }
 
 // BytesAsHTML returns the template bytes as HTML

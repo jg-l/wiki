@@ -1,6 +1,6 @@
 package wiki
 
-import "github.com/peterhellberg/wiki/db"
+import "wiki/db"
 
 // Wiki represents the entire Wiki, contains the db
 type Wiki struct {

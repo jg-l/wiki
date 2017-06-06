@@ -33,6 +33,30 @@ func (db *DB) Open(path string, mode os.FileMode) error {
 		return err
 	}
 
+	err = db.Update(func(tx *Tx) error {
+		_, err := tx.CreateBucketIfNotExists([]byte("created"))
+		assert(err == nil, "pages bucket error: %s", err)
+
+		return nil
+	})
+
+	if err != nil {
+		db.Close()
+		return err
+	}
+
+	err = db.Update(func(tx *Tx) error {
+		_, err := tx.CreateBucketIfNotExists([]byte("modified"))
+		assert(err == nil, "pages bucket error: %s", err)
+
+		return nil
+	})
+
+	if err != nil {
+		db.Close()
+		return err
+	}
+
 	return nil
 }
 

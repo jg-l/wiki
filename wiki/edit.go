@@ -3,18 +3,30 @@ package wiki
 import (
 	"net/http"
 	"text/template"
+	"time"
 
 	"github.com/zenazn/goji/web"
 
-	"github.com/peterhellberg/wiki/db"
+	"wiki/db"
 )
 
 // Edit is the edit endpoint of the Wiki
 func (w *Wiki) Edit(c web.C, rw http.ResponseWriter, r *http.Request) {
 	name := w.getPageName(c.URLParams["name"])
 
-	w.DB().View(func(tx *db.Tx) error {
+	w.DB().Update(func(tx *db.Tx) error {
 		p, _ := tx.Page(name)
+
+		y := BytesAsTime(p.Created)
+		u, errr := time.Now().MarshalBinary()
+		if errr != nil {
+			panic(errr)
+		}
+
+		if y.Year() == 1 {
+			p.Created = []byte(u)
+			p.Save()
+		}
 
 		t, err := template.New("edit").Parse(editTpl)
 

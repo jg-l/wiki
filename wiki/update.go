@@ -6,7 +6,10 @@ import (
 	"github.com/goji/param"
 	"github.com/zenazn/goji/web"
 
-	"github.com/peterhellberg/wiki/db"
+	"fmt"
+	"time"
+
+	"wiki/db"
 )
 
 type formData struct {
@@ -24,9 +27,25 @@ func (w *Wiki) Update(c web.C, rw http.ResponseWriter, r *http.Request) {
 	param.Parse(r.Form, &fd)
 
 	w.DB().Update(func(tx *db.Tx) error {
-		p := db.Page{Tx: tx, Name: name}
-		p.Text = []byte(fd.Text)
+		gg, e := tx.Page(name)
+		if e != nil {
+			panic(e)
+		}
 
+		fmt.Println(gg.Name)
+		v := new(time.Time)
+		v.UnmarshalBinary(gg.Created)
+		fmt.Println(v)
+		t, err := time.Now().MarshalBinary()
+		fmt.Println(err)
+		p := db.Page{Tx: tx, Name: name}
+		if v == nil {
+			p.Created = []byte(t)
+		} else {
+			p.Created = gg.Created
+		}
+		p.Text = []byte(fd.Text)
+		p.Modified = []byte(t)
 		return p.Save()
 	})
 

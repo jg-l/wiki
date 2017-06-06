@@ -24,8 +24,8 @@ import (
 	"github.com/zenazn/goji"
 	"github.com/zenazn/goji/web/middleware"
 
-	"github.com/peterhellberg/wiki/db"
-	"github.com/peterhellberg/wiki/wiki"
+	"wiki/db"
+	"wiki/wiki"
 )
 
 var dbFile = flag.String("db", "/tmp/wiki.db", "Path to the BoltDB file")
