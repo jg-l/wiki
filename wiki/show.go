@@ -1,12 +1,12 @@
 package wiki
 
 import (
+	"github.com/jg-l/wiki/db"
 	"github.com/russross/blackfriday"
 	"github.com/zenazn/goji/web"
 	"html/template"
 	"net/http"
 	"time"
-	"wiki/db"
 )
 
 // Show is the show endpoint of the Wiki

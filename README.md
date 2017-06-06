@@ -3,14 +3,10 @@ Wiki
 
 A tiny wiki using [Goji](http://goji.io/), [BoltDB](https://github.com/boltdb/bolt) and [Blackfriday](https://github.com/russross/blackfriday).
 
-[![Build Status](https://travis-ci.org/peterhellberg/wiki.svg?branch=master)](https://travis-ci.org/peterhellberg/wiki)
-[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat)](https://godoc.org/github.com/peterhellberg/wiki)
-[![License MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/peterhellberg/wiki#license-mit)
-
 ## Installation
 
 ```bash
-go get -u github.com/peterhellberg/wiki
+go get -u github.com/jg-l/wiki
 ```
 
 ## Usage

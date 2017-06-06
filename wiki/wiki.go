@@ -1,6 +1,6 @@
 package wiki
 
-import "wiki/db"
+import "github.com/jg-l/wiki/db"
 
 // Wiki represents the entire Wiki, contains the db
 type Wiki struct {
