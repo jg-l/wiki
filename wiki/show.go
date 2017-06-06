@@ -23,6 +23,7 @@ func (w *Wiki) Show(c web.C, rw http.ResponseWriter, r *http.Request) {
 
 		vars := map[string]interface{}{
 			"Path":     "/" + string(p.Name) + "/edit",
+			"Name":     BytesAsHTML(p.Name),
 			"Text":     BytesAsHTML(ParsedMarkdown(p.Text)),
 			"Created":  BytesAsTime(p.Created),
 			"Modified": BytesAsTime(p.Modified),

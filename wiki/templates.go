@@ -3,30 +3,52 @@ package wiki
 const showTpl = `<!DOCTYPE html>
 <html>
 	<head>
-	<!-- required in all modes -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hack/0.8.0/hack.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hack/0.8.0/dark.css">
+
+	<!-- Google Fonts -->
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+
+	<!-- CSS Reset -->
+	<link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+
+	<!-- Milligram CSS minified -->
+	<link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+
+	<style>
+
+	#footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+			  }
+
+	</style>
 
 
-
+	<title>{{.Name }} - Wiki</title>
 
 	</head>
 	<body class="hack dark" style="padding: 0.5em;">
+		<div class="container" style="padding: 0em 1em;">
 		<form action="{{.Path}}" method="GET">
     	<button class="btn btn-info btn-ghost" type="submit">Edit</button>
 		</form>
-		<div class="container" style="padding: 0em 1em; border: 1px solid #ccc;">
+			{{.Text}} 
+			<div id="footer">
 			{{if .Created.IsZero }}
 
 			{{ else }}
-				<p>Created on: {{ .Created.Month }} {{ .Created.Day }} {{ .Created.Year }} {{ .Created.Hour }}:{{ .Created.Minute }}</p>
+				<span class="float-left">Created on: {{ .Created.Format "2006 Jan _2, 3:04:05 PM" }} </span>
 			{{ end }}
 			{{if .Modified.IsZero }}
 
 			{{ else }}
-				<p>Last modified: {{ .Modified.Month }} {{ .Modified.Day }} {{ .Modified.Year }} {{ .Modified.Hour }}:{{ .Modified.Minute }}</p>
-			{{ end }}
-			{{.Text}} 
+				<span class="float-right">Last modified: {{ .Modified.Format "2006 Jan _2, 3:04:05 PM" }} </span>
+
+			{{ end }}</div>
 		</div>
 	</body>
 </html>`
@@ -34,9 +56,14 @@ const showTpl = `<!DOCTYPE html>
 const editTpl = `<!DOCTYPE html>
 <html>
 	<head>
-	<!-- required in all modes -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hack/0.8.0/hack.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hack/0.8.0/dark.css">
+	<!-- Google Fonts -->
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+
+	<!-- CSS Reset -->
+	<link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+
+	<!-- Milligram CSS minified -->
+	<link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
 	</head>
 	<body class="hack dark" style="padding: 0.5em;">
 		<div class="container">
