@@ -19,7 +19,7 @@ func (w *Wiki) All(c web.C, rw http.ResponseWriter, r *http.Request) {
 		gg := b.Cursor()
 
 		for k, v := gg.First(); k != nil; k, v = gg.Next() {
-			fmt.Printf("key=%s, value=%s\n", k, v)
+			fmt.Println("key=%s, value=%s\n", k, v)
 		}
 
 		return nil
